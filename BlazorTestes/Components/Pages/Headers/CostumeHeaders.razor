@@ -1,0 +1,17 @@
+﻿
+@if(ChildContent is null)
+{
+    <div class="alert alert-info">Lista Vazia</div>
+}
+else
+{
+    <div class="alert alert-info">@ChildContent</div>
+    
+}
+
+@code {
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+}

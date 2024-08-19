@@ -1,0 +1,43 @@
+﻿@page "/medicos"
+@inject ImedicoRepository repository;
+@rendermode InteractiveServer
+@inject NavigationManager navigationManager
+
+<CostumeHeaders>
+    Lista de Médicos
+</CostumeHeaders>
+
+<button class="btn btn-primary" @onclick="@NovoMedico">NOVO MÉDICO</button>
+<table class="table table-striped">
+<thead>
+    <tr>
+        <th>Id</th>
+        <th>Nome</th>
+        <th>Crm</th>
+    </tr>
+</thead>
+<tbody>
+    <MedicosList DeleteCallBack="Delete" Medicos="Medicos"/>
+</tbody>
+</table>
+
+
+
+@code {
+    public List<Medico>? Medicos;
+
+    protected override async Task OnInitializedAsync()
+    {
+        Medicos = await repository.GetAll();
+    }
+
+    public void Delete(Medico medico)
+    {
+        Medicos?.Remove(medico);
+    }
+
+    public void NovoMedico()
+    {
+        navigationManager.NavigateTo("/medicos/create");
+    }
+}

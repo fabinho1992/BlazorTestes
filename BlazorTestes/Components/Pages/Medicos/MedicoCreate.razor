@@ -1,0 +1,20 @@
+﻿@page "/medicos/create"
+@rendermode InteractiveServer
+
+<EditForm Model="Model">
+    <DataAnnotationsValidator/>
+    <div class="mb-3">
+        <label for="Nome" class="form-label">Nome</label>
+        <InputText @bind-Value="Model.Nome" class="form-control" />
+        <ValidationMessage For="()=> Model.Nome"/>
+    </div>
+    <div class="mb-3">
+        <label for="Crm" class="form-label">Crm</label>
+        <InputText @bind-Value="Model.Crm" class="form-control" />
+    </div>
+    <button class="btn btn-primary" type="submit">Salvar</button>
+</EditForm>
+
+@code {
+    public Medico Model { get; set; } = new Medico();
+}
